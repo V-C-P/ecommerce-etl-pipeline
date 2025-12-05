@@ -1,0 +1,17 @@
+# Core dependencies
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# Shopify
+shopify-python-api>=12.3.0
+
+# Amazon SP-API
+python-amazon-sp-api>=2.3.0
+
+# Database
+psycopg2-binary>=2.9.9
+supabase>=2.3.0
+
+# Utilities
+python-dateutil>=2.8.2
+pytz>=2024.1
