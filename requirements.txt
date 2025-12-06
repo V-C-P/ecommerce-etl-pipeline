@@ -6,7 +6,7 @@ python-dotenv>=1.0.0
 shopify-python-api>=12.3.0
 
 # Amazon SP-API
-python-amazon-sp-api>=2.3.0
+python-sp-api>=0.18.0
 
 # Database
 psycopg2-binary>=2.9.9

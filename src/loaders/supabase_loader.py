@@ -205,13 +205,14 @@ class SupabaseLoader:
             logger.error(f"Order data: {order}")
             raise
 
-    def upsert_line_item(self, line_item: Dict, order_id: int) -> Optional[int]:
+    def upsert_line_item(self, line_item: Dict, order_id: int, platform: str = 'shopify') -> Optional[int]:
         """
         Insert or update an order line item
 
         Args:
             line_item: Line item data dictionary
             order_id: Database order ID
+            platform: Platform identifier (shopify, amazon, etc.)
 
         Returns:
             Line item ID
@@ -219,10 +220,9 @@ class SupabaseLoader:
         # Get product_id if product_external_id is provided
         product_id = None
         if line_item.get('product_external_id'):
-            # Assume same platform as order
             product_id = self.get_product_id_by_external_id(
                 line_item['product_external_id'],
-                'shopify'  # This should be passed from context
+                platform
             )
 
         query = """

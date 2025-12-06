@@ -1,9 +1,9 @@
-from extractors.shopify_extractor import ShopifyExtractor
-from extractors.amazon_extractor import AmazonExtractor
-from transformers.shopify_transformer import ShopifyTransformer
-from transformers.amazon_transformer import AmazonTransformer
-from loaders.supabase_loader import SupabaseLoader
-from config import Config
+from .extractors.shopify_extractor import ShopifyExtractor
+from .extractors.amazon_extractor import AmazonExtractor
+from .transformers.shopify_transformer import ShopifyTransformer
+from .transformers.amazon_transformer import AmazonTransformer
+from .loaders.supabase_loader import SupabaseLoader
+from .config import Config
 import logging
 from typing import Dict, List
 
@@ -85,7 +85,7 @@ class ETLPipeline:
 
                         # Upsert line items
                         for line_item in transformed['line_items']:
-                            loader.upsert_line_item(line_item, order_id)
+                            loader.upsert_line_item(line_item, order_id, platform='shopify')
 
                         # Upsert fulfillments
                         for fulfillment in transformed['fulfillments']:
@@ -161,7 +161,7 @@ class ETLPipeline:
 
                         # Upsert line items
                         for line_item in transformed['line_items']:
-                            loader.upsert_line_item(line_item, order_id)
+                            loader.upsert_line_item(line_item, order_id, platform='amazon')
 
                         stats['orders_processed'] += 1
                         stats['orders_inserted'] += 1
